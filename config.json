@@ -11,13 +11,6 @@
         "--bg-end": "#444",
         "--card-bg": "#222"
     },
-"categorias": [
-        {
-            "id": "arroces",
-            "emoji": "🍚",
-            "nombre": "Arroces"
-        }
-    ],
     "redes": {
         "whatsapp": "https://wa.me/573106542792",
         "instagram": "https://www.instagram.com/",

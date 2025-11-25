@@ -237,9 +237,10 @@
     /* Contenedor de gráficos */
     .charts {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
       gap: 15px;
       margin-top: 15px;
+      overflow-x: auto;
     }
 
     /* Controles de Rango */
@@ -421,6 +422,9 @@
         width: 100%;
       }
     }
+
+    
+
   </style>
 </head>
 
@@ -1150,7 +1154,7 @@ options: {
             title: {
               ...chartOptions.plugins.title,
               text: 'Tendencia de Ventas por Día',
-              color: '#909ba7' 
+              color: '#909ba7',
             }
           }
         }

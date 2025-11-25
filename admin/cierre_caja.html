@@ -568,6 +568,98 @@
     }
 }
 
+/* ================================================================= */
+/* 🔎 ESTILOS PARA LA BÚSQUEDA POR FECHA (CONSULTA HISTÓRICA) */
+/* ================================================================= */
+
+.consulta-fecha-controls {
+    display: flex;
+    gap: 15px; /* Aumento de gap para mejor espacio */
+    align-items: center;
+    border-radius: 8px;
+    /* Usar un color de fondo sutil si está en un panel */
+}
+
+.consulta-fecha-label {
+    font-weight: 700;
+    font-size: 1rem;
+    flex-shrink: 0; /* Evita que la etiqueta se comprima */
+}
+
+.consulta-fecha-input {
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 1rem;
+    /* Fondo oscuro y borde sutil */
+    background-color: var(--input);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.2); 
+    flex-grow: 1; /* Permite que el input se expanda un poco */
+    max-width: 200px; /* Ancho máximo estándar para un input de fecha */
+    transition: border-color 0.2s;
+}
+
+.consulta-fecha-input:focus {
+    outline: none;
+    border-color: var(--accent, #ffc400);
+}
+
+/* 🎨 Estilos Generales de Botón Reutilizables (Asegura consistencia) */
+
+/* Si ya tienes una clase .btn, solo necesitas definir las variantes. */
+.btn {
+    padding: 10px 18px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: background-color 0.2s, opacity 0.2s;
+    color: var(--bg-start, #333); /* Texto oscuro sobre el botón */
+    flex-shrink: 0;
+}
+
+/* Variante principal (Buscar) */
+.btn-primary {
+    /* Usamos el color de éxito para la acción principal */
+    background-color: var(--success, #4caf50); 
+    color: #fff; /* Texto blanco en el botón de éxito */
+}
+
+.btn-primary:hover {
+    opacity: 0.9;
+}
+
+/* Variante secundaria (Ver todo) */
+.btn-secondary {
+    /* Usamos el color muted para la acción secundaria */
+    background-color: var(--muted, #9e9e9e); 
+    color: #fff;
+}
+
+.btn-secondary:hover {
+    opacity: 0.9;
+}
+
+
+/* 📱 Responsiveness (Apilar elementos en móvil) */
+@media (max-width: 600px) {
+    .consulta-fecha-controls {
+        flex-direction: column;
+        align-items: stretch; /* Estirar elementos al 100% */
+        gap: 10px;
+    }
+    
+    .consulta-fecha-label {
+        text-align: left;
+        margin-bottom: -5px; /* Ajuste para acercar la etiqueta al input */
+    }
+
+    .consulta-fecha-input {
+        max-width: 100%;
+    }
+}
+
 
     </style>
 </head>
@@ -745,14 +837,16 @@
                 <h1>📜 Historial de cierres</h1>
                 <p style="color:var(--muted)">Consulta registros anteriores</p>
 
-                <div style="display:flex;gap:12px;align-items:center;margin-top:10px">
-                    <label for="fechaConsulta" style="font-weight:700">Buscar por fecha</label>
-                    <input type="date" id="fechaConsulta" />
-                    <button class="btn" style="background:var(--success)" onclick="consultarCierreHistorico(true)">🔎
-                        Buscar</button>
-                    <button class="btn" style="background:var(--muted)" onclick="consultarCierreHistorico(false)">📜 Ver
-                        todo</button>
-                </div>
+<div class="consulta-fecha-controls">
+    <label for="fechaConsulta" class="consulta-fecha-label">Buscar por fecha</label>
+    <input type="date" id="fechaConsulta" class="consulta-fecha-input" />
+    <button class="btn btn-primary" onclick="consultarCierreHistorico(true)">
+        🔎 Buscar
+    </button>
+    <button class="btn btn-secondary" onclick="consultarCierreHistorico(false)">
+        📜 Ver todo
+    </button>
+</div>
 
                 <div id="resultadoConsulta" style="margin-top:14px;color:var(--muted)">Haga clic en Buscar o Ver todo
                     para cargar.</div>
@@ -1328,7 +1422,7 @@ const payload = {
                             html += `
                                 <div style="padding:15px;border-radius:12px;margin-top:10px;background:var(--card);border:1px solid var(--line);border-left:5px solid ${colorTotal};box-shadow: 0 4px 10px rgba(0,0,0,0.3);">
                                   
-                                  <div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:10px;border-bottom:1px solid var(--line);">
+                                  <div style="justify-content:space-between;align-items:center;padding-bottom:10px;border-bottom:1px solid var(--line);">
                                     <div style="flex-grow:1;">
                                       <div style="font-weight:900;font-size:1.1rem;color:var(--text);">
                                         Cierre del ${c["Fecha Cierre"]} a las ${c["Hora Cierre"] || 'N/A'}
@@ -1337,7 +1431,7 @@ const payload = {
                                         Responsable: ${c["Responsable Cierre"] || 'N/A'}
                                       </div>
                                     </div>
-                                    <div style="display:flex;gap:15px;align-items:center;flex-shrink:0;">
+                                    <div style="display:flex;justify-content:space-between;gap:15px;align-items:center;flex-shrink:0;">
                                       <div style="font-weight:900;color:${colorTotal};text-align:right;font-size:1.2rem;">
                                         ${estado}
                                       </div>
@@ -1347,22 +1441,26 @@ const payload = {
                                     </div>
                                   </div>
 
-                                  <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;font-size:0.95rem;gap:10px;margin-top:15px;">
-                                    
-                                    <span style="font-weight:800;color:var(--primary);">MÉTODO</span>
-                                    <span style="font-weight:800;text-align:right;color:var(--primary);">ESPERADO</span>
-                                    <span style="font-weight:800;text-align:right;color:var(--primary);">CONTADO</span>
-                                    <span style="font-weight:800;text-align:right;color:var(--primary);">DIFERENCIA</span>
-                                    
-                                    ${detalles.map(d => `
-                                      <span>${d.metodo}</span>
-                                      <span style="text-align:right;color:var(--text);">${formatCurrency(d.esperado)}</span>
-                                      <span style="text-align:right;color:var(--text);font-weight:600;">${formatCurrency(d.contado)}</span>
-                                      <span style="text-align:right;font-weight:800;color:${getColor(d.diferencia)}">
-                                        ${formatCurrency(d.diferencia)}
-                                      </span>
-                                    `).join('')}
-                                  </div>
+<div style="overflow-x: auto; margin-top: 15px;">
+    
+    <div style="display:grid; grid-template-columns: minmax(150px, 1fr) minmax(120px, 1fr) minmax(120px, 1fr) minmax(120px, 1fr); font-size: 0.95rem; gap: 15px; min-width: 550px; padding-bottom: 5px;">
+        
+        <span style="font-weight:800;color:var(--accent, #ffc400);">MÉTODO</span>
+        <span style="font-weight:800;text-align:right;color:var(--accent, #ffc400);">ESPERADO</span>
+        <span style="font-weight:800;text-align:right;color:var(--accent, #ffc400);">CONTADO</span>
+        <span style="font-weight:800;text-align:right;color:var(--accent, #ffc400);">DIFERENCIA</span>
+        
+        ${detalles.map(d => `
+            <span style="font-weight:500;color:var(--text, #fff);">${d.metodo}</span>
+            <span style="text-align:right;color:var(--muted, #aaa);">${formatCurrency(d.esperado)}</span>
+            <span style="text-align:right;color:var(--text, #fff);font-weight:600;">${formatCurrency(d.contado)}</span>
+            <span style="text-align:right;font-weight:800;color:${getColor(d.diferencia)}">
+                ${formatCurrency(d.diferencia)}
+            </span>
+        `).join('')}
+        
+    </div>
+</div>
 
                                   <div style="margin-top:15px;padding-top:10px;border-top:1px dashed var(--line);font-size:0.9rem;color:var(--text);">
                                     <span style="font-weight:700;color:var(--muted)">Notas/Observaciones:</span> ${notas}
