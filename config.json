@@ -1,31 +1,31 @@
 {
-    "tituloPagina": "Restaurante Chino Imperio Salazar",
-    "nombreRestaurante": "Imperio Salazar",
+    "tituloPagina": "Asociación Humo & Parrilla",
+    "nombreRestaurante": "Asociación Humo & Parrilla",
     "logo": "img/icono_tienda.png",
     "colores": {
         "--bg-body": "Url('img/fondobody.png') no-repeat center center / cover",
         "--header": "linear-gradient(135deg, rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('img/fondoheader.png')",
-        "--accent": "#ff0502",
+        "--accent": "#800000",
         "--bg-skeleton": "linear-gradient(135deg, #f9f9f9, #e9e9e9)",
         "--bg-start": "#333",
         "--bg-end": "#444",
         "--card-bg": "#222"
     },
     "redes": {
-        "whatsapp": "https://wa.me/573106542792",
-        "instagram": "https://www.instagram.com/",
+        "whatsapp": "https://wa.me/573023225739",
+        "instagram": "https://www.instagram.com/asociacionhumoyparrilla/",
         "facebook": "https://www.facebook.com/"
     },
-    "numeroWhatsAppMensajes": "573106542792",
+    "numeroWhatsAppMensajes": "573023225739",
     "footerQR": "img/QR_tienda.png",
     "sede": {
-        "nombre": "Imperio Salazar - Cartagena, Bolivar.",
-        "direccion": "San Fernando, Cl 5",
-        "telefono": "(+57) 310 654 2792"
+        "nombre": "Asociación Humo & Parrilla - Cartagena, Bolivar.",
+        "direccion": "San Fernando, Esquina con Calle 22B, Cra. 83",
+        "telefono": "(+57) 302 322 5739"
     },
     "coordenadasSede": [
-        10.3736096,
-        -75.4731879
+        10.380088, 
+        -75.470444
     ],
     "footerLogo": "img/logo.png",
     "crearTienda": "https://wa.me/573022666530?text=Quiero%20crear%20mi%20tienda",
